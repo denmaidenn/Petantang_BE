@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IPB Student ID OCR</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>IPB Student ID Scanner</h1>
+            <p>Secure, On-premise OCR for KTM</p>
+        </header>
+
+        <main>
+            <div class="camera-section">
+                <video id="videoElement" autoplay playsinline></video>
+                <canvas id="overlay"></canvas>
+                <div class="controls">
+                    <button id="toggleScanBtn">Start Auto-Scan</button>
+                    <!-- Fallback file input -->
+                    <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                    <button id="uploadBtn">Upload Image</button>
+                </div>
+                <canvas id="offscreenCanvas" style="display: none;"></canvas>
+            </div>
+
+            <div id="loading" class="hidden">Processing...</div>
+
+            <div id="result" class="result-section hidden">
+                <h2>Scan Result</h2>
+            </div>
+        </main>
+
+        <!-- Modal -->
+        <div id="dataModal" class="modal hidden">
+            <div class="modal-content">
+                <h2>Verify & Complete Data</h2>
+                <form id="rentalForm">
+                    <div class="form-group">
+                        <label>NIM:</label>
+                        <input type="text" id="nimInput" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Name:</label>
+                        <input type="text" id="nameInput" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Lab:</label>
+                        <select id="labSelect" required>
+                            <option value="">Select Laboratory</option>
+                            <option value="LSI">Lab Sistem Informasi</option>
+                            <option value="Larkom">Lab Arsitektur Komputer</option>
+                            <option value="Larkom">Lab Rekayasa Perangkat Lunak</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Computer No:</label>
+                        <input type="text" id="pcInput" placeholder="e.g. PC-05" required>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="submit" id="submitBtn">Confirm & Rent</button>
+                        <button type="button" id="cancelBtn" style="background:#cc0000;">Cancel</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
